@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="net.example.chatappwebsockets.comunicationcilentserver.server.client.ClientController"
+            style="-fx-background-color: linear-gradient(to bottom, #2196F3, #21CBF3); -fx-background-radius: 15;">
+
+    <!-- Header Section avec design client -->
+    <top>
+        <VBox style="-fx-background-color: rgba(255, 255, 255, 0.15);
+                     -fx-background-radius: 15 15 0 0;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 2);
+                     -fx-border-color: rgba(255, 255, 255, 0.2);
+                     -fx-border-width: 0 0 1 0;">
+            <padding>
+                <Insets top="20" left="25" right="25" bottom="20"/>
+            </padding>
+
+            <!-- Titre principal -->
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="🧑‍💻" style="-fx-font-size: 28px;
+                                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 2);"/>
+                <VBox>
+                    <Label text="Client Chat"
+                           style="-fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 24px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: white;
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 3, 0, 0, 1);"/>
+                    <Label text="Interface Utilisateur"
+                           style="-fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 12px;
+                                  -fx-text-fill: rgba(255,255,255,0.8);"/>
+                </VBox>
+            </HBox>
+
+            <!-- Barre d'état client -->
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 10 0 0 0;">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="🔗" style="-fx-font-size: 12px;"/>
+                    <Label text="Connecté"
+                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                  -fx-font-size: 11px;
+                                  -fx-font-weight: bold;"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="📡" style="-fx-font-size: 12px;"/>
+                    <Label text="ws://localhost:8080"
+                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                  -fx-font-size: 11px;"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="🆔" style="-fx-font-size: 12px;"/>
+                    <Label text="User_001"
+                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                  -fx-font-size: 11px;"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Zone principale des messages -->
+    <center>
+        <VBox style="-fx-background-color: rgba(255, 255, 255, 0.05);
+                     -fx-padding: 20;">
+
+            <!-- Container pour la zone de messages -->
+            <VBox style="-fx-background-color: rgba(255, 255, 255, 0.95);
+                         -fx-background-radius: 15;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);
+                         -fx-border-color: rgba(255, 255, 255, 0.3);
+                         -fx-border-width: 1;
+                         -fx-border-radius: 15;">
+
+                <!-- Header de la zone de messages -->
+                <HBox alignment="CENTER_LEFT"
+                      style="-fx-background-color: rgba(33, 150, 243, 0.1);
+                             -fx-background-radius: 15 15 0 0;
+                             -fx-padding: 15;">
+                    <Label text="💬 Conversation"
+                           style="-fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 14px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #1976D2;"/>
+
+                    <!-- Indicateur de frappe -->
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox alignment="CENTER_RIGHT" spacing="5">
+                        <Label text="●" style="-fx-text-fill: #4CAF50; -fx-font-size: 8px;"/>
+                        <Label text="En ligne"
+                               style="-fx-text-fill: #4CAF50;
+                                      -fx-font-size: 10px;
+                                      -fx-font-weight: bold;"/>
+                    </HBox>
+                </HBox>
+
+                <!-- Zone de texte des messages -->
+                <TextArea fx:id="messageArea"
+                          editable="false"
+                          wrapText="true"
+                          style="-fx-background-color: transparent;
+                                 -fx-control-inner-background: transparent;
+                                 -fx-background-radius: 0 0 15 15;
+                                 -fx-border-color: transparent;
+                                 -fx-focus-color: transparent;
+                                 -fx-faint-focus-color: transparent;
+                                 -fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                 -fx-font-size: 13px;
+                                 -fx-text-fill: #263238;
+                                 -fx-padding: 20;"
+                          prefHeight="400"/>
+            </VBox>
+
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </VBox>
+    </center>
+
+    <!-- Section d'envoi de messages -->
+    <bottom>
+        <VBox style="-fx-background-color: rgba(255, 255, 255, 0.15);
+                     -fx-background-radius: 0 0 15 15;
+                     -fx-border-color: rgba(255, 255, 255, 0.2);
+                     -fx-border-width: 1 0 0 0;">
+
+            <!-- Zone de saisie moderne -->
+            <HBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+
+                <!-- Container de saisie avec indicateur de frappe -->
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <!-- Champ de saisie stylé -->
+                    <TextField fx:id="inputField"
+                               promptText="💭 Écrire un message..."
+                               style="-fx-background-color: rgba(255, 255, 255, 0.95);
+                                      -fx-background-radius: 25;
+                                      -fx-border-color: rgba(33, 150, 243, 0.3);
+                                      -fx-border-width: 2;
+                                      -fx-border-radius: 25;
+                                      -fx-padding: 15 25;
+                                      -fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                      -fx-font-size: 14px;
+                                      -fx-text-fill: #263238;
+                                      -fx-prompt-text-fill: rgba(38, 50, 56, 0.6);
+                                      -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.2), 10, 0, 0, 2);
+                                      -fx-focus-color: #2196F3;
+                                      -fx-faint-focus-color: transparent;">
+                    </TextField>
+
+                    <!-- Indicateur de caractères -->
+                    <HBox alignment="CENTER_RIGHT">
+                        <Label text="Appuyez sur Entrée pour envoyer"
+                               style="-fx-text-fill: rgba(255,255,255,0.6);
+                                      -fx-font-size: 9px;
+                                      -fx-font-style: italic;"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Bouton d'envoi moderne -->
+                <Button text="🚀"
+                        onAction="#handleSend"
+                        style="-fx-background-color: linear-gradient(to right, #2196F3, #21CBF3);
+                               -fx-background-radius: 30;
+                               -fx-text-fill: white;
+                               -fx-font-size: 18px;
+                               -fx-padding: 15;
+                               -fx-border-color: transparent;
+                               -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.5), 15, 0, 0, 3);
+                               -fx-min-width: 60;
+                               -fx-min-height: 60;">
+                    <tooltip>
+                        <Tooltip text="Envoyer le message"/>
+                    </tooltip>
+                </Button>
+            </HBox>
+
+
+        </VBox>
+    </bottom>
+</BorderPane>

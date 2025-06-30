@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="net.example.chatappwebsockets.comunicationcilentserver.server.ServerController"
+            style="-fx-background-color: linear-gradient(to bottom, #667eea, #764ba2); -fx-background-radius: 15;">
+
+    <!-- Header Section avec gradient et effet glass -->
+    <top>
+        <VBox style="-fx-background-color: rgba(255, 255, 255, 0.15);
+                     -fx-background-radius: 15 15 0 0;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 2);
+                     -fx-border-color: rgba(255, 255, 255, 0.2);
+                     -fx-border-width: 0 0 1 0;">
+            <padding>
+                <Insets top="20" left="25" right="25" bottom="20"/>
+            </padding>
+
+            <!-- Titre principal -->
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="💬" style="-fx-font-size: 28px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 2);"/>
+                <VBox>
+                    <Label text="Serveur Chat"
+                           style="-fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 24px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: white;
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 3, 0, 0, 1);"/>
+                    <Label text="Administration  Monitoring"
+                           style="-fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 12px;
+                                  -fx-text-fill: rgba(255,255,255,0.8);"/>
+                </VBox>
+            </HBox>
+
+            <!-- Barre d'état -->
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 10 0 0 0;">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="🟢" style="-fx-font-size: 12px;"/>
+                    <Label text="Serveur Actif"
+                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                  -fx-font-size: 11px;
+                                  -fx-font-weight: bold;"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="👥" style="-fx-font-size: 12px;"/>
+                    <Label text="3 clients connectés"
+                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                  -fx-font-size: 11px;"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="⏰" style="-fx-font-size: 12px;"/>
+                    <Label text="Démarré: 14:30"
+                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                  -fx-font-size: 11px;"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Zone principale des messages -->
+    <center>
+        <VBox style="-fx-background-color: rgba(255, 255, 255, 0.05);
+                     -fx-padding: 20;">
+
+            <!-- Container pour la zone de messages -->
+            <VBox style="-fx-background-color: rgba(255, 255, 255, 0.9);
+                         -fx-background-radius: 15;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);
+                         -fx-border-color: rgba(255, 255, 255, 0.3);
+                         -fx-border-width: 1;
+                         -fx-border-radius: 15;">
+
+                <!-- Header de la zone de messages -->
+                <HBox alignment="CENTER_LEFT"
+                      style="-fx-background-color: rgba(103, 126, 234, 0.1);
+                             -fx-background-radius: 15 15 0 0;
+                             -fx-padding: 15;">
+                    <Label text="📋 Journal des Messages"
+                           style="-fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 14px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #4a5568;"/>
+                </HBox>
+
+                <!-- Zone de texte des messages -->
+                <TextArea fx:id="messageArea"
+                          editable="false"
+                          wrapText="true"
+                          style="-fx-background-color: transparent;
+                                 -fx-control-inner-background: transparent;
+                                 -fx-background-radius: 0 0 15 15;
+                                 -fx-border-color: transparent;
+                                 -fx-focus-color: transparent;
+                                 -fx-faint-focus-color: transparent;
+                                 -fx-font-family: 'Consolas', 'Monaco', monospace;
+                                 -fx-font-size: 12px;
+                                 -fx-text-fill: #2d3748;
+                                 -fx-padding: 15;"
+                          prefHeight="400"/>
+            </VBox>
+
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </VBox>
+    </center>
+
+    <!-- Section d'envoi de messages -->
+    <bottom>
+        <VBox style="-fx-background-color: rgba(255, 255, 255, 0.15);
+                     -fx-background-radius: 0 0 15 15;
+                     -fx-border-color: rgba(255, 255, 255, 0.2);
+                     -fx-border-width: 1 0 0 0;">
+
+            <!-- Zone de saisie moderne -->
+            <HBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+
+                <!-- Champ de saisie stylé -->
+                <TextField fx:id="inputField"
+                           promptText="💬 Tapez votre message au client..."
+                           style="-fx-background-color: rgba(255, 255, 255, 0.9);
+                                  -fx-background-radius: 25;
+                                  -fx-border-color: rgba(255, 255, 255, 0.3);
+                                  -fx-border-width: 2;
+                                  -fx-border-radius: 25;
+                                  -fx-padding: 12 20;
+                                  -fx-font-family: 'Segoe UI', Arial, sans-serif;
+                                  -fx-font-size: 13px;
+                                  -fx-text-fill: #2d3748;
+                                  -fx-prompt-text-fill: rgba(45, 55, 72, 0.6);
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+                                  -fx-focus-color: #667eea;
+                                  -fx-faint-focus-color: transparent;"
+                           prefWidth="400">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </TextField>
+
+                <!-- Bouton d'envoi moderne -->
+                <Button text="📤 Envoyer"
+                        onAction="#handleSend"
+                        style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2);
+                               -fx-background-radius: 25;
+                               -fx-text-fill: white;
+                               -fx-font-family: 'Segoe UI', Arial, sans-serif;
+                               -fx-font-size: 13px;
+                               -fx-font-weight: bold;
+                               -fx-padding: 12 25;
+                               -fx-border-color: transparent;
+                               -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 15, 0, 0, 3);">
+                </Button>
+
+
+            </HBox>
+
+        </VBox>
+    </bottom>
+</BorderPane>
