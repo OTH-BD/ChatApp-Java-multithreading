@@ -34,7 +34,7 @@ Une application de chat en **Java** avec interface **JavaFX**, utilisant des **s
 📦 src
  └── 📁 net.example.chatappwebsockets
      └── 📁 app
-         ├── 📄 Chat.java             # Interface graphique Swing (fenêtre utilisateur)
+         ├── 📄 Chat.java             # Interface graphique Chat(fenêtre utilisateur)
          ├── 📄 Client.java           # Classe de démarrage du client
          ├── 📄 Server.java           # Classe principale du serveur (écoute les sockets)
          ├── 📄 ServerMultiThread.java# Lance le serveur multiclients avec threads
